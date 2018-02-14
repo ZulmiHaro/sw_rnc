@@ -6,10 +6,6 @@ $id = $_REQUEST['id'];
 $rslistar = "SELECT * from empleado WHERE idEmpleado='$id'";
 $listar = mysqli_query($cn,$rslistar);
 $row = mysqli_fetch_array($listar);
-$rstrabajador = "select * from tipo_trabajador order by idTipoEmpleado";
-$trabajador= mysqli_query($cn, $rstrabajador); 
-$rsarea = "select * from area order by idArea";
-$area= mysqli_query($cn, $rsarea); ///ejecuto la consulta
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,88 +59,74 @@ $area= mysqli_query($cn, $rsarea); ///ejecuto la consulta
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content">
-				<form id="defaultForm" method="post" action="php/modempleado.php?id = <?php echo $row['idEmpleado']?>" class="form-horizontal">
+				<form method="post" action="php/modempleado.php?id = <?php echo $row['idEmpleado']?>" class="form-horizontal">
 					<fieldset>
 						<legend>Datos Personales</legend>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombres</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" name="nombre" 
-								value="<?php echo $row['nombres']?>" />
+								<input type="text" class="form-control" name="nombre" onKeyUp="this.value= this.value.toUpperCase();" value="<?php echo $row['nombres']?>" required />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Apellido Paterno</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" name="apellidoP" 
-								value="<?php echo $row['apellidosPa']?>" />
+								<input type="text" class="form-control" name="apellidoP" onKeyUp="this.value= this.value.toUpperCase();" value="<?php echo $row['apellidosPa']?>" required />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Apellido Materno</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" name="apellidoM"
-								 value="<?php echo $row['apellidosMa']?>"  />
+								<input type="text" class="form-control" name="apellidoM" onKeyUp="this.value= this.value.toUpperCase();" value="<?php echo $row['apellidosMa']?>" required />
 							</div>
 						</div>
                         <div class="form-group">
 							<label class="col-sm-3 control-label">DNI</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" name="dniPs"
+								<input type="text" class="form-control" name="dni" maxlength="8" 
 								value="<?php echo $row['dni']?>" />
 							</div>
 						</div>
                         <div class="form-group">
 							<label class="col-sm-3 control-label">Número de Teléfono</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" name="telefonoPs"
+								<input type="text" class="form-control" name="telefono" 
 								value="<?php echo $row['telefono']?>" />
 							</div>
 						</div>
                         <div class="form-group">
 							<label class="col-sm-3 control-label">Dirección</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" name="direccionPs"
-								value="<?php echo $row['direccion']?>"/>
-							</div>
-						</div>
-					</fieldset>
-					<fieldset>
-						<legend>Datos Laborales</legend>
-                        <div class="no-move"></div>
-                        <div class="form-group">
-							<label class="col-sm-3 control-label">Tipo</label>
-							<div class="col-sm-5">
-								<input type="text" class="form-control" name="tipo"
-								value="<?php echo $row['idTipoEmpleado']?>" disabled />
+								<input type="text" class="form-control" name="direccion" onKeyUp="this.value= this.value.toUpperCase();" value="<?php echo $row['direccion']?>" required />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Email</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="emailPs" 
+								<input type="text" class="form-control" name="email" id="email" 
 								value="<?php echo $row['email']?>" />
 							</div>
 							<div class="col-sm-5">
-								<select class="populate placeholder" name="dominioEmail" id="dominioEmail">
-								<?php while ($rsemail=mysqli_fetch_array($email)) {?>
-                                <option value="<?php echo $rsemail['idEmpleado'] ?>" ><?php echo $rsemail['dominioEmail'] ?></option>
-                           		<?php } ?> 
+								<select class="populate placeholder" name="dominio" id="dominio">
+	                                <option value="@outlook.com">@OUTLOOK.COM</option>
+	                                <option value="@outlook.es">@OUTLOOK.ES</option>
+	                                <option value="@gmail.com">@GMAIL.COM</option>
+	                                <option value="@hotmail.com">@HOTMAIL.COM</option>
+	                                <option value="@hotmail.es">@HOTMAIL.ES</option>
+	                                <option value="@yahoo.com">@YAHOO.COM</option>
+	                                <option value="@unitru.edu.pe">@UNITRU.EDU.PE</option>
 								</select>
 							</div>
 						</div>
-                        <div class="form-group">
-							<label class="col-sm-3 control-label">Área</label>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Estado Civil</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" name="area"
-								value="<?php echo $row['idArea']?>" disabled />
-							</div>
-						</div>
-                        <div class="form-group">
-							<label class="col-sm-3 control-label">Puesto</label>
-							<div class="col-sm-5">
-								<input type="text" class="form-control" name="puestoPs"
-								value="<?php echo $row['puesto']?>" disabled />
+								<select class="populate placeholder" name="estadocivil" id="estadocivil">
+	                                <option value="SOLTERO">SOLTERO</option>
+	                                <option value="CASADO">CASADO</option> 
+	                                <option value="VIUDO">VIUDO</option>
+	                                <option value="DIVORCIADO">DIVORCIADO</option>                     
+								</select>
 							</div>
 						</div>
 					</fieldset>

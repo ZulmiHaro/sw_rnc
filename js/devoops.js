@@ -3503,5 +3503,8 @@ function totalPagoBanco (monto,mora){
 	var total = monto + mora;
 	return total;
 }
+function prueba(){
+	
+}
 
 

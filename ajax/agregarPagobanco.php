@@ -1,9 +1,11 @@
 <?php 
 	include("../php/conexion.php");
     $cn = conectarse();
-    $rsalumno = "SELECT * FROM alumno ORDER BY idAlumno";
+    $rsalumno = "SELECT matricula.idMatricula as id,concat(alumno.nombre,' ',alumno.apellidoPa,' ',alumno.apellidosMa) as Alumno,alumno.codPago as codigo FROM `matricula` 
+		INNER JOIN detalles_operativos on matricula.idDetallesOperativos=detalles_operativos.idDetalleOperativo
+		INNER JOIN alumno on detalles_operativos.idAlumno = alumno.idAlumno";
     $alumno = mysqli_query($cn,$rsalumno);
-    $rsservicio="SELECT * FROM servicios ORDER BY idServicio";
+    $rsservicio="SELECT `idServicio`,`codigo`,concat(`descripcion`,'-- S/.',`monto`) as monto FROM `servicios` ORDER by idServicio";
     $servicio=mysqli_query($cn, $rsservicio);
 ?>
 <div class="col-xs-12 col-sm-12">
@@ -29,17 +31,17 @@
 						<legend>Datos de Pago</legend>
                         <div class="form-group">
 							<label class="col-sm-3 control-label">Código de Alumno</label>
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 								<select class="populate placeholder" name="codPagoAlumno" id="codPagoAlumno">
 								<?php while ($rsalumno=mysqli_fetch_array($alumno)) {?>
-                                <option value="<?php echo $rsalumno['idAlumno'] ?>" ><?php 
-                                echo $rsalumno['codPago'] ?></option>
+                                <option value="<?php echo $rsalumno['id'] ?>" ><?php 
+                                echo $rsalumno['codigo'] ?></option>
                            		<?php } ?> 
 								</select>
 							</div>
 						</div>
                         <div class="form-group">
-							<label class="col-sm-3 control-label">Monto de Servicio</label>
+							<label class="col-sm-3 control-label">Monto de Servicio S/.</label>
 							<div class="col-sm-5">
 								<select class="populate placeholder" name="montoServicio" id="montoServicio">
 								<?php while ($rsservicio=mysqli_fetch_array($servicio)) {?>
@@ -49,7 +51,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Mora</label>
+							<label class="col-sm-3 control-label">Mora S/.</label>
 							<div class="col-sm-2">
 								<input type="text" class="form-control" name="mora" id="mora" />
 							</div>
@@ -73,7 +75,7 @@
 						
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nro. de Operación</label>
-							<div class="col-sm-5">
+							<div class="col-sm-3">
 								<input type="text" class="form-control" name="nroOperacion"/>
 							</div>
 						</div>
@@ -92,7 +94,7 @@
 					</fieldset>
 					<div class="form-group">
 						<div class="col-sm-9 col-sm-offset-3">
-							<button type="submit" class="btn btn-primary">Guardar</button>
+							<button type="submit" class="btn btn-primary" >Guardar</button>
                             <a href="main.php" type="button" class="btn btn-danger">Cancelar</a>
 						</div>                     
 					</div>
@@ -100,7 +102,7 @@
 			</div>
 		    </div>
         </div>
-	<script type="text/javascript">
+<script type="text/javascript">
 // Run Select2 plugin on elements
 function DemoSelect2(){
 	$('#s2_with_tag').select2({placeholder: "Select OS"});
@@ -126,6 +128,36 @@ $(document).ready(function() {
 	// Load example of form validation
 	LoadBootstrapValidatorScript(DemoFormValidator);
 	// Add drag-n-drop feature to boxes
+	WinMove();
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// Load TimePicker plugin and callback all time and date pickers
+	LoadTimePickerScript(AllTimePickers);
+	// Create jQuery-UI tabs
+	$("#tabs").tabs();
+	// Sortable for elements
+	$(".sort").sortable({
+		items: "div.col-sm-2",
+		appendTo: 'div.box-content'
+	});
+	// Droppable for example of trash
+	$(".drop div.col-sm-2").draggable({containment: '.dropbox' });
+	$('#trash').droppable({
+		drop: function(event, ui) {
+			$(ui.draggable).remove();
+		}
+	});
+	var icons = {
+		header: "ui-icon-circle-arrow-e",
+		activeHeader: "ui-icon-circle-arrow-s"
+	};
+	// Make accordion feature of jQuery-UI
+	$("#accordion").accordion({icons: icons });
+	// Create UI spinner
+	$("#ui-spinner").spinner();
+	// Add Drag-n-Drop to boxes
 	WinMove();
 });
 </script>

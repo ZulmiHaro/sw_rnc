@@ -8,8 +8,7 @@
 <script src="plugins/justified-gallery/jquery.justifiedGallery.min.js"></script>
 <script src="plugins/tinymce/tinymce.min.js"></script>
 <script src="plugins/tinymce/jquery.tinymce.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
 <!-- All functions for this theme + document.ready processing -->
 <script src="js/devoops.js"></script>
-<script src="js/main.js"></script>
-<script src="js/sweetalert.min.js"></script>
-<script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
+<script src="js/jquery.backstretch.min.js"></script>

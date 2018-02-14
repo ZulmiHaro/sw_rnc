@@ -31,35 +31,41 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" name="nombresP" id="nombresP" 
+								<input type="text" class="form-control" name="nombresP" id="nombresP" onKeyUp="this.value = this.value.toUpperCase();"
 								required autofocus />
 							</div>
 						</div>
                         <div class="form-group">
 							<label class="col-sm-3 control-label">Código</label>
-							<div class="col-sm-5">
-								<input type="text" class="form-control" name="codigoP" id="codigoP" required/>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="codigoP" id="codigoP" maxlength="10" onKeyUp="this.value = this.value.toUpperCase();" required/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Cantidad-Medida</label>
 							<div class="col-sm-1">
-								<input type="text" class="form-control" name="cantidadP" id="cantidadP" required/>
+								<input type="number" min="0" class="form-control" name="cantidadP" id="cantidadP" required/>
 							</div>
 							<div class="col-sm-1">
-								<input type="text" class="form-control" name="medida" id="medida" required/>
+								<input type="text" class="form-control" name="medida" id="medida" onKeyUp="this.value = this.value.toUpperCase();" required/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Costo</label>
-							<div class="col-sm-5">
-								<input type="text" class="form-control" name="costoP" id="costoP" required/>
+							<label class="col-sm-3 control-label">Stock</label>
+							<div class="col-sm-1">
+								<input type="number" min="0" class="form-control" name="stock" id="stock" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Costo S/.</label>
+							<div class="col-sm-2">
+								<input type="text" class="form-control" name="costoP" id="costoP" min="0" required/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Descripción</label>
 							<div class="col-sm-5">
-								<textarea class="form-control" name="descripcionP" id="descripcionP" required>			
+								<textarea class="form-control" name="descripcionP" id="descripcionP" onKeyUp="this.value = this.value.toUpperCase();" required>			
 								</textarea>
 							</div>
 						</div>
@@ -101,7 +107,7 @@
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead>
 						<tr>
 							<th>#</th>
@@ -169,4 +175,3 @@ $(document).ready(function() {
 	WinMove();
 });
 </script>
-

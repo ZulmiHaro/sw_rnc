@@ -1,8 +1,7 @@
-
 <?php
     include("../php/conexion.php");
     $cn = conectarse();  
-    $rslistar = "select * from requerimiento_producto order by idRequerimientoProd";
+    $rslistar = "SELECT * from requerimiento_producto order by idRequerimientoProd";
     $listar= mysqli_query($cn, $rslistar); ///ejecuto la consulta
     $rsprod = "SELECT * from producto order by idProducto";
     $prod= mysqli_query($cn, $rsprod); ///ejecuto la consulta
@@ -32,31 +31,33 @@
 					<fieldset>
 						<legend>Requerimientos a Almacén</legend>
                         <div class="form-group">
-							<label class="col-sm-3 control-label">Código</label>
+							<label class="col-sm-3 control-label">Producto</label>
 							<div class="col-sm-3">
-								<select class="populate placeholder" name="idProducto" id="idProducto">
+								<select class="populate placeholder" name="producto" id="producto">
 								<?php while ($rsprod=mysqli_fetch_array($prod)) {?>
-                                <option value="<?php echo $rsprod['idProducto'] ?>" ><?php echo $rsprod['idProducto'] ?></option>
+                                <option value="<?php echo $rsprod['idProducto'] ?>" ><?php echo $rsprod['nombreProd'] ?>	
+                                </option>
                            		<?php } ?> 
 								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Cantidad</label>
-							<div class="col-sm-1">
-								<input type="text" class="form-control" name="cantidadP" required/>
+							<div class="col-sm-2">
+								<input type="number" class="form-control" name="cantidad" maxlength="10" required/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Descripción</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" name="descripcionP" required/>
+								<textarea class="form-control" name="descripcion" id="descripcion" onKeyUp="this.value = this.value.toUpperCase();" required>			
+								</textarea>
 							</div>
 						</div>
                         <div class="form-group">
 							<label class="col-sm-3 control-label">Fecha</label>
 							<div class="col-sm-3">
-								<input type="text" class="fecha" name="fechaIP" value=" <?php echo date("Y-m-d");  ?>"  disabled/>
+								<input type="text" class="fecha" name="fecha" value=" <?php echo date("Y-m-d");  ?>"  disabled/>
 							</div>
 						</div>
 					</fieldset>
@@ -90,7 +91,7 @@
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead>
 						<tr>
 							<th>ID REQUERIMIENTO</th>
@@ -129,9 +130,9 @@
 		</div>
 	</div>
 	</div>
-        </div>
+</div>
 
- <script type="text/javascript">
+<script type="text/javascript">
 // Run Datables plugin and create 3 variants of settings
 function AllTables(){
 	TestTable1();
@@ -149,36 +150,6 @@ $(document).ready(function() {
 	// Load Datatables and run plugin on tables 
 	LoadDataTablesScripts(AllTables);
 	// Add Drag-n-Drop feature
-	WinMove();
-});
-</script>
-
-<script type="text/javascript">
-// Run Select2 plugin on elements
-function DemoSelect2(){
-	$('#s2_with_tag').select2({placeholder: "Select OS"});
-	$('#s2_country').select2();
-}
-// Run timepicker
-function DemoTimePicker(){
-	$('#input_time').timepicker({setDate: new Date()});
-}
-$(document).ready(function() {
-	// Create Wysiwig editor for textare
-	TinyMCEStart('#wysiwig_simple', null);
-	TinyMCEStart('#wysiwig_full', 'extreme');
-	// Add slider for change test input length
-	FormLayoutExampleInputLength($( ".slider-style" ));
-	// Initialize datepicker
-	$('#input_date').datepicker({setDate: new Date()});
-	// Load Timepicker plugin
-	LoadTimePickerScript(DemoTimePicker);
-	// Add tooltip to form-controls
-	$('.form-control').tooltip();
-	LoadSelect2Script(DemoSelect2);
-	// Load example of form validation
-	LoadBootstrapValidatorScript(DemoFormValidator);
-	// Add drag-n-drop feature to boxes
 	WinMove();
 });
 </script>

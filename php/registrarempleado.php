@@ -4,17 +4,18 @@
 	$nombre = $_POST['nombre'];
 	$apellidoP = $_POST['apellidoP'];
 	$apellidoM = $_POST['apellidoM'];
-	$dni = $_POST['dniPs'];
-	$telefono = $_POST['telefonoPs'];
-	$direccion = $_POST['direccionPs'];
-	$tipo= $_POST['tipo'];
-	$email = $_POST['emailPs'];
-	$dominioEmail = $_POST['dominioEmail'];
-	$area = $_POST['area'];
-	$puesto = $_POST['puestoPs'];
+	$dni = $_POST['dni'];
+	$telefono = $_POST['telefono'];
+	$direccion = $_POST['direccion'];
+	$email = $_POST['email'];
+	$dominio = $_POST['dominio'];
+	$estadocivil = $_POST['estadocivil'];
+	$genero = $_POST['genero'];
+	$fechaNacimiento = $_POST['fechaNacimiento'];
+	$fechaRegistro = date('Y-m-d H:i:s');
 
-	$rsinsertar="INSERT INTO empleado(nombres,apellidosPa,apellidosMa,dni,telefono,direccion,idTipoEmpleado,email,idArea,puesto,dominioEmail)
-	VALUES ('$nombre','$apellidoP','$apellidoM','$dni','$telefono','$direccion','$tipo','$email','$area','$puesto','$dominioEmail')";
+	$rsinsertar="INSERT INTO empleado(nombres,apellidosPa,apellidosMa,direccion,telefono,dni,email,dominioEmail,estadoCivil,sexo,fechaNacimiento,fechaRegistro)
+	VALUES ('$nombre','$apellidoP','$apellidoM','$direccion','$telefono','$dni','$email','$dominio','$estadocivil','$genero','$fechaNacimiento','$fechaRegistro')";
     $insertar = mysqli_query($cn,$rsinsertar);
     header("Location: ../main.php#ajax/datosPersonal.php");
 ?>

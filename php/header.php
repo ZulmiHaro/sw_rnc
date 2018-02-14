@@ -1,7 +1,7 @@
 <div class="container-fluid expanded-panel">
 		<div class="row">
 			<div id="logo" class="col-xs-12 col-sm-2">
-				<a href="main.php">OF. DE TESORERÍA</a>
+				<a href="main.php">ADMINISTRACIÓN</a>
 			</div>
 			<div id="top-panel" class="col-xs-12 col-sm-10">
 				<div class="row">
@@ -31,16 +31,16 @@
 									<i class="fa fa-angle-down pull-right"></i>
 									<div class="user-mini pull-right">
 										<span class="welcome">Bienvenid@,</span>
-										<p>  <?php echo $_SESSION['usuario']; ?></p>
+										<p id="nombreUsuario">  <?php echo $_SESSION['usuario']; ?></p>
 									</div>
 								</a>
 								<ul class="dropdown-menu">
-									<li>
+									<!--<li>
 										<a class="ajax-link" href="ajax/perfil.php">
 											<i class="fa fa-user"></i>
 											<span>Perfil</span>
 										</a>
-									</li>
+									</li> -->
 									<li>
 										<a href="index.php">
 											<i class="fa fa-power-off"></i>

@@ -10,6 +10,7 @@
             $clave = "";
             $cn = mysqli_connect($servidor,$usuario,$clave) or die("Error al conectar a la BD".mysql_error());
             mysqli_select_db($cn, $basededatos) or die("Error al seleccionar la BD");
+            mysqli_set_charset($cn,'utf8');
             return $cn;   
 
             /*$servidor = "bdfullday.mysql.database.azure.com";

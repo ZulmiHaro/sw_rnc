@@ -5,10 +5,13 @@
 	$codigo = $_POST['codigoP'];
 	$cantidad = $_POST['cantidadP'];
 	$medida = $_POST['medida'];
+	$stock = $_POST['stock'];
 	$descripcion = $_POST['descripcionP'];
 	$costo = $_POST['costoP'];
-	$rsinsertar="INSERT INTO producto(nombreProd,codigo,cantidad,descripcion, fecha,medida,costo) 
-	VALUES('$nombre','$codigo','$cantidad','$descripcion','getdate();','$medida','$costo')";
+	$fecha = date('Y-m-d H:i:s');
+
+	$rsinsertar="INSERT INTO producto(nombreProd,descripcion,cantidad,codigo,fecha,medida,costo,stock) 
+	VALUES('$nombre','$descripcion','$cantidad','$codigo','$fecha','$medida','$costo','$stock')";
     $insertar = mysqli_query($cn,$rsinsertar);
     header("Location: ../main.php#ajax/datosProducto.php");
 ?>

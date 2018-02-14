@@ -11,6 +11,12 @@ session_start();
     ?>
     <script src="js/jquery-1.10.2.min.js"></script>
     <link rel="icon" href="img/icon.ico">
+    <style type="text/css">
+    	#nombreUsuario{
+    		text-decoration: none;
+    		color: black;
+    	}
+    </style>
 </head>
 <body>
 <!--Start Header-->
@@ -46,6 +52,7 @@ session_start();
 <div id="main" class="container-fluid">
 	<div class="row">
 		<div id="sidebar-left" class="col-xs-2 col-sm-2">
+			
 			<?php
 				include('php/sidebar.php');
 			?>

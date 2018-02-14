@@ -19,6 +19,6 @@
 	<link href="plugins/select2/select2.css" rel="stylesheet">
 	<link href="plugins/justified-gallery/justifiedGallery.css" rel="stylesheet">
 	<link href="plugins/chartist/chartist.min.css" rel="stylesheet">
-
-	<link href="css/style_v1.css" rel="stylesheet">
 	<link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>	
+	<link href="css/style_v1.css" rel="stylesheet">
+	

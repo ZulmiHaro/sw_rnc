@@ -1,17 +1,17 @@
  <?php
 	include('../php/conexion.php');
 	$cn= conectarse();
-	
-	$rsusuario = "SELECT empleado.nombres,empleado.apellidosPa,empleado.apellidosMa, concat(empleado.email,empleado.dominioEmail) AS Email,empleado.direccion,empleado.dni,empleado.telefono,empleado.puesto,area.nombreArea,tipo_trabajador.descripcion
+	session_start();
+	$usuarioName = $_SESSION['usuario'];
+	$rsusuario = "SELECT empleado.nombres as Nombre,empleado.apellidosPa,empleado.apellidosMa, concat(empleado.email,empleado.dominioEmail) AS Email,empleado.direccion,empleado.dni,empleado.telefono,empleado.puesto,area.nombreArea,tipo_trabajador.descripcion
 		FROM `usuario` 
 		inner join empleado on usuario.idEmpleado=empleado.idEmpleado
 		INNER join area on empleado.idArea=area.idArea 
 		INNER join tipo_trabajador on empleado.idTipoEmpleado=tipo_trabajador.idTipoEmpleado 
-		where usuario.idUsuario=1";
-    $usuario= mysqli_query($cn, $rsusuario); ///ejecuto la consulta
-    $row=mysqli_fetch_array($usuario);
+		where usuario.user = '$usuarioName'";
+    $usuario = mysqli_query($cn, $rsusuario); ///ejecuto la consulta
+    $row = mysqli_fetch_array($usuario);
     //para editar 
-
 ?>
  <div class="col-xs-12 col-sm-12">
 		<div class="box">
@@ -37,11 +37,14 @@
 				<form id="defaultForm" class="form-horizontal">
 					<fieldset>
 						<legend>Perfil de Usuario</legend>
+						<?php 
+							echo session_id();
+						 ?>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombres</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" name="nombresU" 			
-								 value="<?php echo $row[0] ?>" disabled/>
+								 value="<?php echo $row['Nombre'] ?>" disabled/>
 							</div>
 						</div>
                         <div class="form-group">

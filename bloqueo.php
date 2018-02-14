@@ -1,3 +1,8 @@
+<?php
+require_once('php/conexion.php');
+$cn= conectarse();
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
